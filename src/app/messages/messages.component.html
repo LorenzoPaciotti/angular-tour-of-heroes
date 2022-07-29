@@ -1,0 +1,7 @@
+<div *ngIf="messageService.messages.length" style="border:8px;border-color:black">
+  <h2>MESSAGE SERVICE: MESSAGGI</h2>
+  <button type="button" class="clear" (click)="messageService.clear()">Pulisci messaggi</button>
+  <div *ngFor="let message of messageService.messages">
+    {{message}}
+  </div>
+</div>
