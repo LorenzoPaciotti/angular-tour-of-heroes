@@ -2,6 +2,7 @@
 <div class="container">
   <h2>App Hero Form</h2>
 
+  <form #heroForm="ngForm" (ngSubmit)="onSubmit()" [hidden]="submitted">
   <div class="form-group">
     <label for="name">Name</label>
     <input type="text" class="form-control" id="name" #name="ngModel" required [(ngModel)]="model.name" name="name">
@@ -24,6 +25,31 @@
       <option *ngFor="let pow of powers" [value]="pow">{{pow}}</option>
     </select>
   </div>
+  <button type="submit" class="btn btn-success" [disabled]="!heroForm.form.valid">Submit</button>
+  </form>
+
+  <div [hidden]="!submitted">
+    <h4>You submitted the following:</h4>
+    <div class="row">
+      <div class="col-xs-3">Name</div>
+      <div class="col-xs-9">{{ model.name }}</div>
+    </div>
+    <div class="row">
+      <div class="col-xs-3">Alter Ego</div>
+      <div class="col-xs-9">{{ model.alterEgo }}</div>
+    </div>
+    <div class="row">
+      <div class="col-xs-3">Power</div>
+      <div class="col-xs-9">{{ model.power }}</div>
+    </div>
+    <br>
+    <button type="button" class="btn btn-primary" (click)="submitted=false">Edit</button>
+  </div>
+
+  <br>
   {{ model | json }}
+  <br>
+  <br>
+  <button type="button" class="btn btn-default" (click)="newHero(); heroForm.reset()">New Hero</button>
 </div>
 
